@@ -2,7 +2,7 @@
 
 Heavily inspired by wemake-services' awesome [caddy-gen](https://github.com/wemake-services/caddy-gen).
 
-[Docker Hub](https://hub.docker.com/repository/docker/siemko8/caddy2-gen)
+[Docker Hub](https://hub.docker.com/repository/docker/xpapla/caddy2-gen)
 
 ---
 
