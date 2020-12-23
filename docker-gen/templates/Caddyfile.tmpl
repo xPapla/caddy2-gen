@@ -16,8 +16,8 @@ log {
     {{ $allhosts := trim (index $c.Labels "virtual.host") }}
     {{ range $t, $host := split $allhosts " " }}
       {{ $tlsEmail := trim (index $c.Labels "virtual.tls-email") }}
-      {{ $doApiToken := trim (index $c.Labels "virtual.do-api-token") }}
-      {{ $doDnsOn := ne $doApiToken "" }}
+      {{ $cloudflareApiToken := trim (index $c.Labels "virtual.cloudflare-api-token") }}
+      {{ $cloudflareOn := ne $cloudflareApiToken "" }}
       {{ $tlsOff := eq $tlsEmail "" }}
       {{ $tlsOn := ne $tlsEmail "" }}
       {{ $alias := trim (index $c.Labels "virtual.alias") }}
@@ -33,8 +33,8 @@ log {
       {{ end }}
 
       {{ if $tlsOff }}http://{{ end }}{{ $host }} {
-      {{ if $tlsOn }}tls {{ $tlsEmail }}{{ if $doDnsOn }} {
-        dns digitalocean {{ $doApiToken }}
+      {{ if $tlsOn }}tls {{ $tlsEmail }}{{ if $cloudflareOn }} {
+        dns cloudflare {{ $cloudflareApiToken }}
       }{{end}}{{ end }}
 
       {{ if $basicauth }}

@@ -1,7 +1,7 @@
 FROM caddy:2.2.1-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/digitalocean
+    --with github.com/caddy-dns/cloudflare
 
 FROM caddy:2.2.1
 
