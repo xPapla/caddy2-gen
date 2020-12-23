@@ -1,4 +1,12 @@
-FROM caddy:2.1.1
+FROM caddy:2.2.1-builder AS builder
+
+RUN xcaddy build \
+    --with github.com/caddy-dns/digitalocean
+
+FROM caddy:2.2.1
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+
 
 ARG DOCKER_GEN_VERSION="0.7.4"
 ARG FOREGO_VERSION="0.16.1"
